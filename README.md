@@ -133,20 +133,6 @@ Wallpaper/
 - Secure video handling with AVFoundation
 - Privacy-focused local storage
 
-## 🎯 Comparison with Wallper
-
-| Feature | Wallper | Our Implementation |
-|---------|---------|--------------------|
-| Video Wallpapers | ✅ | ✅ Enhanced with quality controls |
-| Multi-Screen | ✅ | ✅ Advanced per-screen management |
-| Categories | ✅ | ✅ 11 predefined + custom |
-| Filtering | ✅ | ✅ Enhanced with 10 sort options |
-| Caching | ✅ | ✅ NSCache + background downloads |
-| Thumbnails | ✅ | ✅ AVFoundation-generated |
-| Likes System | ✅ | ✅ Persistent with heart indicators |
-| Fullscreen Preview | ✅ | ✅ Enhanced with controls |
-| Modern UI | ✅ | ✅ Ultra-thin materials design |
-| Performance | ✅ | ✅ Metal-optimized rendering |
 
 ## 📱 Supported Formats
 
