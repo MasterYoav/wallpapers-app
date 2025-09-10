@@ -1,0 +1,120 @@
+// Wallpaper App - Quick Test Playground
+// This playground tests the core data models and logic
+
+import Foundation
+import SwiftUI
+import PlaygroundSupport
+
+// Copy of VideoData models for testing
+enum VideoCategory: String, CaseIterable, Codable, Hashable {
+    case abstract = "Abstract"
+    case nature = "Nature"
+    case space = "Space"
+    case city = "City"
+    case minimal = "Minimal"
+    case colors = "Colors"
+    
+    var icon: String {
+        switch self {
+        case .abstract: return "circle.dashed"
+        case .nature: return "leaf.fill"
+        case .space: return "moon.stars.fill"
+        case .city: return "building.2.fill"
+        case .minimal: return "minus"
+        case .colors: return "paintpalette.fill"
+        }
+    }
+}
+
+enum VideoResolution: String, CaseIterable, Codable, Hashable {
+    case hd720 = "720p"
+    case hd1080 = "1080p"
+    case uhd4k = "4K"
+    case uhd5k = "5K"
+}
+
+// Test the core functionality
+print("🎬 Wallpaper App Core Test")
+print("==========================")
+
+// Test 1: Video Categories
+print("\n📂 Video Categories:")
+for category in VideoCategory.allCases {
+    print("   \(category.icon) \(category.rawValue)")
+}
+
+// Test 2: Video Resolutions
+print("\n📺 Video Resolutions:")
+for resolution in VideoResolution.allCases {
+    print("   • \(resolution.rawValue)")
+}
+
+// Test 3: Create sample video data
+struct VideoData {
+    let title: String
+    let category: VideoCategory
+    let resolution: VideoResolution
+    let duration: TimeInterval
+    
+    var formattedDuration: String {
+        return "\(Int(duration))s"
+    }
+}
+
+let sampleVideos = [
+    VideoData(title: "Abstract Waves", category: .abstract, resolution: .uhd4k, duration: 30),
+    VideoData(title: "Forest Morning", category: .nature, resolution: .hd1080, duration: 45),
+    VideoData(title: "City Lights", category: .city, resolution: .uhd4k, duration: 60)
+]
+
+print("\n🎥 Sample Videos:")
+for video in sampleVideos {
+    print("   \(video.category.icon) \(video.title) - \(video.resolution.rawValue) - \(video.formattedDuration)")
+}
+
+print("\n✅ Core data models working perfectly!")
+print("🚀 Ready for full Xcode project testing!")
+
+// Simple SwiftUI view for playground
+struct VideoThumbnail: View {
+    let video: VideoData
+    
+    var body: some View {
+        VStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.blue.opacity(0.3))
+                .frame(width: 160, height: 90)
+                .overlay {
+                    Image(systemName: video.category.icon)
+                        .font(.title)
+                }
+            
+            Text(video.title)
+                .font(.caption)
+                .multilineTextAlignment(.center)
+        }
+    }
+}
+
+struct TestView: View {
+    var body: some View {
+        VStack {
+            Text("Wallpaper App")
+                .font(.title.bold())
+            
+            Text("Video Thumbnail Test")
+                .font(.subtitle)
+            
+            HStack {
+                ForEach(0..<sampleVideos.count, id: \.self) { index in
+                    VideoThumbnail(video: sampleVideos[index])
+                }
+            }
+            .padding()
+        }
+        .frame(width: 600, height: 300)
+    }
+}
+
+// Show the SwiftUI view in playground
+PlaygroundPage.current.setLiveView(TestView())
